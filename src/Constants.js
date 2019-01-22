@@ -7,6 +7,7 @@ export const COLOR_PALETTE = {
   blue: '#0564E5',
   blue_light: '#2ab8df',
   green: '#60BC63',
+  yellow: '#ffe300',
   text: '#6E7A83',
   text2: '#B6BABD',
   title: '#36424A',

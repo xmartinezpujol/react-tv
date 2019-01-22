@@ -4,8 +4,6 @@ import '../App.css';
 import './Button';
 import './Input';
 import './Modal';
-import './Login';
 import './Logo';
-import './Table';
 import './Text';
 import './View';

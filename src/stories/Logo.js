@@ -19,7 +19,7 @@ const optionsColor = {
 
 storiesOf('Logo', module)
   .addDecorator(withKnobs)
-  .add('Docplanner', () => {
+  .add('RakutenTv', () => {
     const defaultLogoColor = 'business';
     const logoColor = select('Color', optionsColor, defaultLogoColor);
     return (
