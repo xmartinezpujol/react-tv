@@ -2,7 +2,7 @@ import { addDecorator, configure } from '@storybook/react';
 import { setOptions } from '@storybook/addon-options';
 import { setDefaults } from '@storybook/addon-info';
 
-import { plannerStyles } from './config_infostyles';
+import { rakutenStyles } from './config_infostyles';
 
 // Option defaults:
 setOptions({
@@ -10,7 +10,7 @@ setOptions({
    * name to display in the top left corner
    * @type {String}
    */
-  name: 'planner-ui',
+  name: 'rakuten-ui',
   /**
    * URL for name in top left corner to link to
    * @type {String}
@@ -80,7 +80,7 @@ setOptions({
 // addon-info
 setDefaults({
   header: true,
-  styles: plannerStyles,
+  styles: rakutenStyles,
 });
 
 // Register decorator

@@ -30,7 +30,7 @@ describe('Button', () => {
   it('has no theme, should be default', () => {
     wrapper.setProps({ theme: false });
     expect(wrapper.render()).toHaveStyleRule('border', '0');
-    expect(wrapper.render()).toHaveStyleRule('color', 'white');
+    expect(wrapper.render()).toHaveStyleRule('color', 'black');
   });
   it('has icon, should render icon font classes', () => {
     wrapper.setProps({

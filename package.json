@@ -3,12 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "core-js": "^2.6.3",
     "glamor": "^2.20.40",
     "glamorous": "^4.9.2",
     "isomorphic-fetch": "^2.2.1",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
     "react-redux": "^5.0.5",
+    "react-router-dom": "^4.3.1",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "reselect": "^3.0.1"
@@ -16,9 +18,10 @@
   "scripts": {
     "start": "webpack-dev-server --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
-    "test": "jest",
+    "test": "jest --env=jsdom --coverage",
     "teste2e": "cypress open",
-    "storybook": "start-storybook -p 6006 -s ./dist",
+    "test:output": "jest --json --outputFile=.jest-test-results.json",
+    "storybook": "start-storybook -p 6006 -s ./public",
     "build-storybook": "build-storybook"
   },
   "jest": {
@@ -30,6 +33,9 @@
     ],
     "modulePathIgnorePatterns": [
       "cypress"
+    ],
+    "snapshotSerializers": [
+      "jest-glamor-react"
     ]
   },
   "eslintConfig": {
@@ -42,6 +48,7 @@
     "@storybook/addon-actions": "^v4.0.0-alpha.8",
     "@storybook/addon-backgrounds": "^v4.0.0-alpha.8",
     "@storybook/addon-info": "^v4.0.0-alpha.8",
+    "@storybook/addon-jest": "^4.1.7",
     "@storybook/addon-knobs": "^v4.0.0-alpha.8",
     "@storybook/addon-links": "^v4.0.0-alpha.8",
     "@storybook/addon-options": "^v4.0.0-alpha.8",
@@ -68,9 +75,12 @@
     "extract-text-webpack-plugin": "^3.0.0",
     "html-webpack-plugin": "^2.30.1",
     "jest": "^21.2.1",
+    "jest-glamor-react": "^4.3.0",
     "json-loader": "^0.5.7",
+    "mini-css-extract-plugin": "^0.5.0",
     "react-hot-loader": "^1.3.1",
     "react-test-renderer": "^16.2.0",
+    "storybook-addon-jest": "0.0.1",
     "style-loader": "^0.18.2",
     "webpack": "^3.3.0",
     "webpack-dev-server": "^2.5.1",

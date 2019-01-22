@@ -1,4 +1,4 @@
-export const plannerStyles = {
+export const rakutenStyles = {
   button: {
     base: {
       fontFamily: 'sans-serif',
