@@ -1,8 +1,11 @@
 import React from 'react';
-import { connect } from 'react-redux';
+
 import { Switch, Route, withRouter } from 'react-router-dom';
+
+import Footer from './partials/Footer';
 import Header from './partials/Header';
 import HomePage from './home/HomePage';
+
 import MovieDetail from './movie/containers/MovieDetail';
 
 class App extends React.Component {
@@ -22,13 +25,10 @@ class App extends React.Component {
             component={MovieDetail}
           />
         </Switch>
+        <Footer />
       </React.Fragment>
     );
   }
 }
 
-const mapStateToProps = state => ({
-
-});
-
-export default withRouter(connect(mapStateToProps)(App));
+export default withRouter(App);

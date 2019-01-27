@@ -13,7 +13,6 @@ const Overlay = glamorous.div({
 const CardWrapper = glamorous.div({
   display: 'flex',
   flexDirection: 'column',
-  backgroundColor: 'white',
   margin: 3,
   borderRadius: 5,
   transition: '0.25s cubic-bezier(0.17, 0.67, 0.52, 0.97)',
@@ -39,6 +38,7 @@ const Card = glamorous.div(
     minWidth: props.dimensions.lg.w,
     maxWidth: props.dimensions.lg.w,
     backgroundImage: `url(${props.url})`,
+    marginRight: props.last ? 100 : 0,
     '@media(max-width: 1200px)': {
       height: props.dimensions.md.h,
       minWidth: props.dimensions.md.w,
@@ -75,12 +75,13 @@ class List extends React.Component {
   render() {
     return (
       <React.Fragment>
-        {typeof (this.props.data) !== 'undefined' && this.props.data.contents.data.map(item => (
+        {typeof (this.props.data) !== 'undefined' && this.props.data.contents.data.map((item, index) => (
           <CardWrapper key={item.id}>
             <Card
               onClick={() => this.handleSelect(item.id)}
               url={item.images.artwork}
               dimensions={this.props.dimensions}
+              last={index === this.props.data.contents.data.length - 1}
             >
               <Overlay />
             </Card>

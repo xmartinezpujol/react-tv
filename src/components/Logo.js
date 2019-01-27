@@ -45,7 +45,7 @@ Logo.propTypes = {
 };
 
 Logo.defaultProps = {
-  color: 'blue',
+  color: 'red',
   scale: 1.0,
 };
 

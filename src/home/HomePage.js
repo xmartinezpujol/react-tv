@@ -16,32 +16,29 @@ const Categories = [
   'nuestras-preferidas-de-la-semana',
 ];
 
-class HomePage extends React.Component {
-  render() {
-    const dimensions = {
-      xs: { w: 200, h: 290 },
-      sm: { w: 200, h: 290 },
-      md: { w: 200, h: 290 },
-      lg: { w: 200, h: 290 },
-    };
-    return (
-      <View direction="column" type="night">
-        <CarouselHero
-          height={444}
-          slides={HeroSlides}
-          imgWidth={1920}
-        />
-        {Categories.map((cat, index) => (
-          <MovieList
-            key={cat}
-            id={index}
-            cardSize={dimensions}
-            listName={cat}
-          />
-        ))}
-      </View>
-    );
-  }
-}
+const dimensions = {
+  xs: { w: 200, h: 290 },
+  sm: { w: 200, h: 290 },
+  md: { w: 200, h: 290 },
+  lg: { w: 200, h: 290 },
+};
+
+const HomePage = () => (
+  <View direction="column" type="night" style={{ padding: '70px 0px' }}>
+    <CarouselHero
+      height={444}
+      slides={HeroSlides}
+      imgWidth={1920}
+    />
+    {Categories.map((cat, index) => (
+      <MovieList
+        key={cat}
+        id={index}
+        cardSize={dimensions}
+        listName={cat}
+      />
+    ))}
+  </View>
+);
 
 export default HomePage;

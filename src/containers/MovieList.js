@@ -1,12 +1,18 @@
 import React from 'react';
+import glamorous from 'glamorous';
 
 import { connect } from 'react-redux';
 
 import Carousel from '../components/Carousel';
 import List from '../components/List';
 import Text from '../components/Text';
+import View from '../components/View';
 
 import * as listActions from './../redux/modules/list';
+
+const Container = glamorous(View)({
+  marginLeft: 20,
+});
 
 class MovieList extends React.Component {
   constructor(props) {
@@ -24,7 +30,10 @@ class MovieList extends React.Component {
     const { cardSize, list, id } = this.props;
 
     return (
-      <React.Fragment>
+      <Container
+        direction="column"
+        style={{ position: 'relative' }}
+      >
         {typeof (list.data[id]) !== 'undefined' &&
           <Text type="h2.w" >
             {list.data[id].name}
@@ -42,7 +51,7 @@ class MovieList extends React.Component {
             dimensions={cardSize}
           />
         </Carousel>
-      </React.Fragment>
+      </Container>
     );
   }
 }

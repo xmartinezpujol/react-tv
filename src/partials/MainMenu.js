@@ -1,11 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const MainMenu = props => (
+import Text from '../components/Text';
+
+const MainMenu = () => (
   <nav>
     <ul>
       <li>
-        <Link to="/">Home</Link>
+        <Link
+          href="/"
+          to="/"
+        >
+          <Text type="h3.w">
+            Home
+          </Text>
+        </Link>
       </li>
     </ul>
   </nav>
