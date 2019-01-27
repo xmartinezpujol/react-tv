@@ -15,7 +15,7 @@ export const COLOR_PALETTE = {
   // Infrastructure
   purewhite: '#FFF',
   spacewhite: '#EDF2F2',
-  night: '#1A1D1F',
+  night: '#171717',
   positive: '#86D9C5',
   negative: '#EF8B8B',
   temporary: '#FBB86D',

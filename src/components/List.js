@@ -1,8 +1,6 @@
 import React from 'react';
 import glamorous from 'glamorous';
 
-import { Events } from '../mocks/Events';
-
 const Overlay = glamorous.div({
   position: 'absolute',
   transition: 'all 0.3s ease',
@@ -12,63 +10,7 @@ const Overlay = glamorous.div({
   backgroundImage: 'linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 50%,rgba(0,0,0,.85) 100%)',
 });
 
-const EventInfo = glamorous.div({
-  position: 'relative',
-  display: 'flex',
-  justifyContent: 'center',
-  flexDirection: 'column',
-  padding: 10,
-});
-
-const EventListTitle = glamorous.span(
-  {
-    color: '#36424a',
-    fontSize: 18,
-    lineHeight: 2,
-    fontWeight: 900,
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-  },
-  props => ({
-    maxWidth: `calc(${props.dimensions.lg.w}px - 28px)`,
-    '@media(max-width: 1200px)': {
-      maxWidth: `calc(${props.dimensions.md.w}px - 28px)`,
-    },
-    '@media(max-width: 992px)': {
-      maxWidth: `calc(${props.dimensions.sm.w}px - 28px)`,
-    },
-    '@media(max-width: 767px)': {
-      maxWidth: `calc(${props.dimensions.xs.w}px - 28px)`,
-    },
-  }),
-);
-
-const EventListVenueTitle = glamorous.span(
-  {
-    color: '#6e7a83',
-    fontSize: 16,
-    lineHeight: 1.2,
-    marginBottom: 4,
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-  },
-  props => ({
-    maxWidth: `calc(${props.dimensions.lg.w}px - 28px)`,
-    '@media(max-width: 1200px)': {
-      maxWidth: `calc(${props.dimensions.md.w}px - 28px)`,
-    },
-    '@media(max-width: 992px)': {
-      maxWidth: `calc(${props.dimensions.sm.w}px - 28px)`,
-    },
-    '@media(max-width: 767px)': {
-      maxWidth: `calc(${props.dimensions.xs.w}px - 28px)`,
-    },
-  }),
-);
-
-const EventListCardWrapper = glamorous.div({
+const CardWrapper = glamorous.div({
   display: 'flex',
   flexDirection: 'column',
   backgroundColor: 'white',
@@ -80,7 +22,7 @@ const EventListCardWrapper = glamorous.div({
   },
 });
 
-const EventListCard = glamorous.div(
+const Card = glamorous.div(
   {
     backgroundSize: 'cover',
     backgroundPosition: '50% 50%',
@@ -93,22 +35,22 @@ const EventListCard = glamorous.div(
     },
   },
   props => ({
-    height: props.dimensions.lg.h * 0.6,
+    height: props.dimensions.lg.h,
     minWidth: props.dimensions.lg.w,
     maxWidth: props.dimensions.lg.w,
     backgroundImage: `url(${props.url})`,
     '@media(max-width: 1200px)': {
-      height: props.dimensions.md.h * 0.6,
+      height: props.dimensions.md.h,
       minWidth: props.dimensions.md.w,
       maxWidth: props.dimensions.md.w,
     },
     '@media(max-width: 992px)': {
-      height: props.dimensions.sm.h * 0.6,
+      height: props.dimensions.sm.h,
       minWidth: props.dimensions.sm.w,
       maxWidth: props.dimensions.sm.w,
     },
     '@media(max-width: 767px)': {
-      height: props.dimensions.xs.h * 0.6,
+      height: props.dimensions.xs.h,
       minWidth: props.dimensions.xs.w,
       maxWidth: props.dimensions.xs.w,
     },
@@ -122,7 +64,6 @@ class List extends React.Component {
       selected: null,
     };
     this.handleSelect = this.handleSelect.bind(this);
-    this.handleFavorite = this.handleFavorite.bind(this);
   }
 
   handleSelect(eventId) {
@@ -131,32 +72,19 @@ class List extends React.Component {
     }));
   }
 
-  handleFavorite(e) {
-    e.stopPropagation();
-    alert('Favorite me in API');
-  }
-
   render() {
     return (
       <React.Fragment>
-        {Events.map(event => (
-          <EventListCardWrapper key={event.id}>
-            <EventListCard
-              onClick={() => this.handleSelect(event.id)}
-              url={event.cover}
+        {typeof (this.props.data) !== 'undefined' && this.props.data.contents.data.map(item => (
+          <CardWrapper key={item.id}>
+            <Card
+              onClick={() => this.handleSelect(item.id)}
+              url={item.images.artwork}
               dimensions={this.props.dimensions}
             >
               <Overlay />
-            </EventListCard>
-            <EventInfo>
-              <EventListTitle dimensions={this.props.dimensions}>
-                {event.name}
-              </EventListTitle>
-              <EventListVenueTitle dimensions={this.props.dimensions}>
-                {event.venue}
-              </EventListVenueTitle>
-            </EventInfo>
-          </EventListCardWrapper>
+            </Card>
+          </CardWrapper>
         ))}
       </React.Fragment>
     );

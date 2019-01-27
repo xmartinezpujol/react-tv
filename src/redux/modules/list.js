@@ -1,38 +1,35 @@
-// API CONFIG
-const API_KEY = '3068f3a34eb23cadda9e625ea4e903bd';
-const API_LANG = 'en-US';
-
 const initialState = {
-  list: [],
+  data: [],
   isFetching: true,
 };
 
-export default (state = initialState, action) => {
+// Reducer
+export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case 'FETCH_LIST_SUCCESS':
       return Object.assign({}, action, {
-        list: [...state.list, action.list],
+        data: [...state.data, action.data],
         isFetching: false,
       });
-    default:
-      return state;
+    default: return state;
   }
 };
 
 // Sync Action
-export const fetchListSuccess = list => ({
+export const fetchListSuccess = data => ({
   type: 'FETCH_LIST_SUCCESS',
   isFetching: false,
-  list,
+  data,
 });
 
 // Async Action
-export const fetchList = (url, sort) => {
+export const fetchList = (listName) => {
+  const proxyurl = 'https://cors-anywhere.herokuapp.com/';
   return (dispatch) => {
-    return fetch(`https://api.themoviedb.org/3/${url}?api_key=${API_KEY}${sort}&language=${API_LANG}`)
-      .then(response => response.json())
+    return fetch(`${proxyurl}https://gizmo.rakuten.tv/v3/lists/${listName}?classification_id=5&device_identifier=web&locale=es&market_code=es`,
+    ).then(response => response.json())
       .then((res) => {
-        dispatch(fetchListSuccess(res.results));
+        dispatch(fetchListSuccess(res.data));
       })
       .catch((error) => {
         throw (error);

@@ -244,7 +244,7 @@ class Carousel extends React.Component {
       <React.Fragment>
         {this.props.isLoading &&
         <LoaderContainer>
-          <Loader />
+          <Loader color="yellow" />
         </LoaderContainer>
         }
         {!this.props.isLoading &&

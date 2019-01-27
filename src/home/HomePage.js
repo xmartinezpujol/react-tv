@@ -1,51 +1,45 @@
 import React from 'react';
 
-import CarouselHero from '../components/CarouselHero';
-
 import { HeroSlides } from '../mocks/HeroSlides';
-import Carousel from '../components/Carousel';
-import List from '../components/List';
 
-import View from "../components/View";
+import CarouselHero from '../components/CarouselHero';
+import View from '../components/View';
+import MovieList from '../containers/MovieList';
+
+const Categories = [
+  'populares-en-taquilla',
+  'estrenos-para-toda-la-familia',
+  'estrenos-imprescindibles-en-taquilla',
+  'estrenos-espanoles',
+  'si-te-perdiste',
+  'especial-x-men',
+  'nuestras-preferidas-de-la-semana',
+];
 
 class HomePage extends React.Component {
   render() {
     const dimensions = {
-      xs: { w: 310, h: 210 },
-      sm: { w: 310, h: 210 },
-      md: { w: 385, h: 260 },
-      lg: { w: 385, h: 260 },
+      xs: { w: 200, h: 290 },
+      sm: { w: 200, h: 290 },
+      md: { w: 200, h: 290 },
+      lg: { w: 200, h: 290 },
     };
     return (
-      <div id="home-page">
-        <div className="page">
-          <CarouselHero
-            height={444}
-            slides={HeroSlides}
-            imgWidth={1920}
+      <View direction="column" type="night">
+        <CarouselHero
+          height={444}
+          slides={HeroSlides}
+          imgWidth={1920}
+        />
+        {Categories.map((cat, index) => (
+          <MovieList
+            key={cat}
+            id={index}
+            cardSize={dimensions}
+            listName={cat}
           />
-          <Carousel
-            isLoading={false}
-            numCards={9}
-            dimensions={dimensions}
-            duration={600}
-          >
-            <List
-              dimensions={dimensions}
-            />
-          </Carousel>
-          <Carousel
-            isLoading={false}
-            numCards={9}
-            dimensions={dimensions}
-            duration={600}
-          >
-            <List
-              dimensions={dimensions}
-            />
-          </Carousel>
-        </div>
-      </div>
+        ))}
+      </View>
     );
   }
 }
