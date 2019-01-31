@@ -1,6 +1,9 @@
 import React from 'react';
 import glamorous from 'glamorous';
 
+import Text from './Text';
+import View from './View';
+
 const Overlay = glamorous.div({
   position: 'absolute',
   transition: 'all 0.3s ease',
@@ -57,6 +60,11 @@ const Card = glamorous.div(
   }),
 );
 
+const Icon = glamorous.i({
+  fontSize: 12,
+  marginRight: 3,
+});
+
 class List extends React.Component {
   constructor(props) {
     super(props);
@@ -85,6 +93,60 @@ class List extends React.Component {
             >
               <Overlay />
             </Card>
+            {typeof (item.highlighted_score) !== 'undefined' &&
+              <View
+                direction="row"
+                justify="center"
+                style={{
+                  marginRight: index === this.props.data.contents.data.length - 1 ? 100 : 0,
+                }}
+              >
+                <View
+                  direction="row"
+                  justify="center"
+                  align="center"
+                  style={{ padding: 5 }}
+                >
+                  <Icon
+                    className="fa fa-star"
+                    style={{ color: 'yellow' }}
+                  />
+                  <Text
+                    type="p1"
+                    style={{
+                      color: 'yellow',
+                      margin: 0,
+                      fontWeight: 500,
+                      fontSize: 14,
+                    }}
+                  >
+                    {item.highlighted_score.score}
+                  </Text>
+                </View>
+                <View
+                  direction="row"
+                  justify="center"
+                  align="center"
+                  style={{ padding: 5 }}
+                >
+                  <Icon
+                    className="fa fa-user"
+                    style={{ color: 'white' }}
+                  />
+                  <Text
+                    type="p1"
+                    style={{
+                      color: 'white',
+                      margin: 0,
+                      fontWeight: 500,
+                      fontSize: 14,
+                    }}
+                  >
+                    {item.highlighted_score.formatted_amount_of_votes}
+                  </Text>
+                </View>
+              </View>
+            }
           </CardWrapper>
         ))}
       </React.Fragment>

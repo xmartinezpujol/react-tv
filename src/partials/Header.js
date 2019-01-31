@@ -19,7 +19,7 @@ const Header = () => (
     direction="row"
     align="center"
   >
-    <Logo color="white" scale="0.7" />
+    <Logo color="white" scale={0.7} />
     <MainMenu />
   </HeaderContainer>
 );

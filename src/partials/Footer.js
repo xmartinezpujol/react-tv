@@ -34,7 +34,7 @@ const Footer = () => (
     align="center"
   >
     <LogoContainer>
-      <Logo color="text" scale="0.7" />
+      <Logo color="text" scale={0.7} />
     </LogoContainer>
     <View>
       <nav>
