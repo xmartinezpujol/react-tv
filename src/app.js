@@ -5,6 +5,7 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 
 import View from './components/View';
 
+import ActorPage from './actor/ActorPage';
 import Footer from './partials/Footer';
 import Header from './partials/Header';
 import HomePage from './home/HomePage';
@@ -38,6 +39,11 @@ class App extends React.Component {
               exact
               path="/movie/:id"
               component={MoviePage}
+            />
+            <Route
+              exact
+              path="/actor/:id"
+              component={ActorPage}
             />
           </Switch>
           <Footer />

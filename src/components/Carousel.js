@@ -105,39 +105,55 @@ const Arrow = glamorous.i({
   },
 });
 
-const ArrowNavPrev = glamorous.div({
-  display: 'flex',
-  alignItems: 'center',
-  position: 'absolute',
-  zIndex: 100,
-  color: '#FFF',
-  background: 'linear-gradient(to right,rgba(0,0,0,.95) 0,transparent 100%)',
-  height: '100%',
-  top: 0,
-  left: 0,
-  paddingLeft: 20,
-  fontSize: 60,
-  '@media(max-width: 992px)': {
-    display: 'none',
+const ArrowNavPrev = glamorous.div(
+  {
+    display: 'flex',
+    alignItems: 'center',
+    position: 'absolute',
+    zIndex: 100,
+    color: '#FFF',
+    height: '100%',
+    top: 0,
+    left: 0,
+    paddingLeft: 20,
+    textShadow: '0 0 3px rgba(0,0,0,.8)',
+    fontSize: 60,
+    '@media(max-width: 992px)': {
+      display: 'none',
+    },
   },
-});
+  props => ({
+    background: props.whiteNav
+      ? 'linear-gradient(to right,rgba(255,255,255,.95) 0,transparent 100%)'
+      : 'linear-gradient(to right,rgba(0,0,0,.95) 0,transparent 100%)'
+    ,
+  }),
+);
 
-const ArrowNavNext = glamorous.div({
-  display: 'flex',
-  alignItems: 'center',
-  position: 'absolute',
-  zIndex: 100,
-  color: '#FFF',
-  background: 'linear-gradient(to left,rgba(0,0,0,.95) 0,transparent 100%)',
-  height: '100%',
-  top: 0,
-  right: 0,
-  paddingRight: 20,
-  fontSize: 60,
-  '@media(max-width: 992px)': {
-    display: 'none',
+const ArrowNavNext = glamorous.div(
+  {
+    display: 'flex',
+    alignItems: 'center',
+    position: 'absolute',
+    zIndex: 100,
+    color: '#FFF',
+    height: '100%',
+    top: 0,
+    right: 0,
+    paddingRight: 20,
+    textShadow: '0 0 3px rgba(0,0,0,.8)',
+    fontSize: 60,
+    '@media(max-width: 992px)': {
+      display: 'none',
+    },
   },
-});
+  props => ({
+    background: props.whiteNav
+      ? 'linear-gradient(to left,rgba(255,255,255,.95) 0,transparent 100%)'
+      : 'linear-gradient(to left,rgba(0,0,0,.95) 0,transparent 100%)'
+    ,
+  }),
+);
 
 const CarouselContainer = glamorous.div({
   position: 'relative',
@@ -250,7 +266,7 @@ class Carousel extends React.Component {
         {!this.props.isLoading &&
           <CarouselContainer>
             {this.state.curSlide !== 0 &&
-              <ArrowNavPrev>
+              <ArrowNavPrev whiteNav={this.props.whiteNav}>
                 <Arrow
                   onClick={e => this.handleSlideMove(e, 'left', this.EventSelector)}
                   className="fa fa-angle-left"
@@ -262,7 +278,7 @@ class Carousel extends React.Component {
             </SelectorWrapper>
             {(this.state.maxSlideMoves === null ||
               this.state.curSlide !== this.state.maxSlideMoves) &&
-              <ArrowNavNext>
+              <ArrowNavNext whiteNav={this.props.whiteNav}>
                 <Arrow
                   onClick={e => this.handleSlideMove(e, 'right', this.EventSelector)}
                   className="fa fa-angle-right"

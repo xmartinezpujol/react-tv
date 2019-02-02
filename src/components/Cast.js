@@ -8,6 +8,8 @@ import View from './View';
 
 import { COLOR_PALETTE } from '../Constants';
 
+const PLACEHOLDER_PHOTO = 'https://prod1-kraken-cloudfront.rakuten.tv/images/placeholders/cast/positive-4a94b4434c.png';
+
 const Overlay = glamorous.div({
   position: 'absolute',
   transition: 'all 0.3s ease',
@@ -26,7 +28,7 @@ const CardWrapper = glamorous.div({
   display: 'flex',
   flexDirection: 'column',
   margin: 3,
-  borderRadius: 5,
+  borderRadius: 3,
   transition: '0.25s cubic-bezier(0.17, 0.67, 0.52, 0.97)',
   ':hover': {
     cursor: 'pointer',
@@ -37,7 +39,7 @@ const Card = glamorous.div(
   {
     backgroundSize: 'cover',
     backgroundPosition: '50% 50%',
-    borderRadius: 5,
+    borderRadius: 3,
     border: 0,
     transform: 'translateY(0px)',
     transition: '0.25s cubic-bezier(0.17, 0.67, 0.52, 0.97)',
@@ -66,84 +68,45 @@ const Card = glamorous.div(
   }),
 );
 
-const Icon = glamorous.i({
-  fontSize: 12,
-  marginRight: 3,
-});
-
-const List = props => (
+const Cast = props => (
   <React.Fragment>
     {props.data.map((item, index) => (
       <CardWrapper key={item.id}>
         <Link
           href="/"
-          to={`/movie/${item.id}`}
+          to={`/actor/${item.id}`}
         >
           <Card
-            url={item.images.artwork}
+            url={item.photo !== null ? item.photo : PLACEHOLDER_PHOTO}
             dimensions={props.dimensions}
             last={index === props.data.length - 1}
           >
             <Overlay />
           </Card>
         </Link>
-        {typeof (item.highlighted_score) !== 'undefined' &&
         <View
           direction="row"
           justify="center"
+          align="center"
           style={{
+            padding: 5,
             marginRight: index === props.data.length - 1 ? 100 : 0,
           }}
         >
-          <View
-            direction="row"
-            justify="center"
-            align="center"
-            style={{ padding: 5 }}
+          <Text
+            type="p1"
+            style={{
+              margin: 0,
+              textAlign: 'center',
+              fontSize: 12,
+            }}
           >
-            <Icon
-              className="fa fa-star"
-              style={{ color: 'yellow' }}
-            />
-            <Text
-              type="p1"
-              style={{
-                color: 'yellow',
-                margin: 0,
-                fontWeight: 500,
-                fontSize: 14,
-              }}
-            >
-              {item.highlighted_score.score}
-            </Text>
-          </View>
-          <View
-            direction="row"
-            justify="center"
-            align="center"
-            style={{ padding: 5 }}
-          >
-            <Icon
-              className="fa fa-user"
-              style={{ color: 'white' }}
-            />
-            <Text
-              type="p1"
-              style={{
-                color: 'white',
-                margin: 0,
-                fontWeight: 500,
-                fontSize: 14,
-              }}
-            >
-              {item.highlighted_score.formatted_amount_of_votes}
-            </Text>
-          </View>
+            {item.name}
+          </Text>
         </View>
-        }
       </CardWrapper>
     ))}
   </React.Fragment>
 );
 
-export default List;
+export default Cast;

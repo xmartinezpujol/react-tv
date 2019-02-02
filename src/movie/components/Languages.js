@@ -5,7 +5,7 @@ import Text from '../../components/Text';
 import View from '../../components/View';
 
 const Languages = props => (
-  <View direction="column" style={{ flexWrap: 'wrap' }}>
+  <View direction="column" style={{ flexWrap: 'wrap', marginBottom: 20 }}>
     <View align="center" style={{ marginBottom: 10 }}>
       <Icon
         size={14}
@@ -38,7 +38,7 @@ const Languages = props => (
           Audio
         </Text>
       </View>
-      <View direction="column" width="100%">
+      <View direction="column" style={{ width: '100%' }}>
         <Text
           type="p1"
           style={{
@@ -55,7 +55,7 @@ const Languages = props => (
     <View direction="column">
       {props.streams.map(stream => (
         stream.audio_languages.map(audio => (
-          <View>
+          <View key={audio.name}>
             <Text type="p1" style={{ margin: 0, minWidth: 100 }}>
               {audio.name}
             </Text>

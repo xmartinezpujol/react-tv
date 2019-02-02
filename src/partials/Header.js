@@ -12,9 +12,12 @@ import MainMenu from './MainMenu';
 
 const HeaderContainer = glamorous(View)({
   position: 'fixed',
-  padding: '10px 0px',
   zIndex: 999,
   borderBottom: '1px solid rgba(255,255,255,.2)',
+  padding: '10px 70px 10px 70px',
+  '@media(max-width: 910px)': {
+    padding: '10px 0px 10px 30px',
+  },
 });
 
 const fadeIn = glamor.css.keyframes({
@@ -39,7 +42,7 @@ class Header extends React.Component {
           <Text
             type="h2.w"
             style={{
-              margin: '0px 50px',
+              marginRight: 50,
               animation: `${fadeIn} 1s ease forwards`,
             }}
           >

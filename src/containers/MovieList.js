@@ -26,10 +26,6 @@ class MovieList extends React.Component {
     this.props.dispatch(listActions.fetchList(this.props.listName));
   }
 
-  componentWillUnmount() {
-
-  }
-
   render() {
     const { cardSize, list, id } = this.props;
 
@@ -48,12 +44,13 @@ class MovieList extends React.Component {
           numCards={typeof (list.data[id]) !== 'undefined' ? list.data[id].contents.data.length : 9}
           dimensions={cardSize}
           duration={600}
-          data={list.data[id]}
         >
-          <List
-            data={list.data[id]}
-            dimensions={cardSize}
-          />
+          {typeof (list.data[id]) !== 'undefined' &&
+            <List
+              data={list.data[id].contents.data}
+              dimensions={cardSize}
+            />
+          }
         </Carousel>
       </Container>
     );
