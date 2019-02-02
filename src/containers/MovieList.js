@@ -26,6 +26,10 @@ class MovieList extends React.Component {
     this.props.dispatch(listActions.fetchList(this.props.listName));
   }
 
+  componentWillUnmount() {
+
+  }
+
   render() {
     const { cardSize, list, id } = this.props;
 

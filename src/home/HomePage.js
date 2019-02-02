@@ -1,4 +1,5 @@
 import React from 'react';
+import glamorous from 'glamorous';
 
 import { HeroSlides } from '../mocks/HeroSlides';
 
@@ -23,8 +24,12 @@ const dimensions = {
   lg: { w: 200, h: 290 },
 };
 
+const HomeContainer = glamorous(View)({
+  position: 'relative',
+});
+
 const HomePage = () => (
-  <View direction="column" type="night" style={{ padding: '70px 0px' }}>
+  <HomeContainer direction="column">
     <CarouselHero
       height={444}
       slides={HeroSlides}
@@ -38,7 +43,7 @@ const HomePage = () => (
         listName={cat}
       />
     ))}
-  </View>
+  </HomeContainer>
 );
 
 export default HomePage;

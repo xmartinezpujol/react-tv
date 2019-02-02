@@ -9,6 +9,7 @@ import View from '../components/View';
 
 const FooterContainer = glamorous(View)({
   padding: '10px 40px',
+  marginTop: 70,
   borderBottom: '1px solid rgba(255,255,255,.2)',
   '@media(max-width: 730px)': {
     display: 'none',

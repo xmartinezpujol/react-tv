@@ -1,8 +1,12 @@
 import React from 'react';
 import glamorous from 'glamorous';
 
+import { Link } from 'react-router-dom';
+
 import Text from './Text';
 import View from './View';
+
+import { COLOR_PALETTE } from '../Constants';
 
 const Overlay = glamorous.div({
   position: 'absolute',
@@ -10,7 +14,12 @@ const Overlay = glamorous.div({
   height: '100%',
   width: '100%',
   zIndex: 1,
+  borderRadius: 3,
   backgroundImage: 'linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0) 50%,rgba(0,0,0,.85) 100%)',
+  ':hover': {
+    opacity: 0.8,
+    boxShadow: `inset 0px 0px 0px 4px ${COLOR_PALETTE.yellow}`,
+  },
 });
 
 const CardWrapper = glamorous.div({
@@ -32,9 +41,6 @@ const Card = glamorous.div(
     border: 0,
     transform: 'translateY(0px)',
     transition: '0.25s cubic-bezier(0.17, 0.67, 0.52, 0.97)',
-    ':hover': {
-      opacity: 0.8,
-    },
   },
   props => ({
     height: props.dimensions.lg.h,
@@ -66,33 +72,23 @@ const Icon = glamorous.i({
 });
 
 class List extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selected: null,
-    };
-    this.handleSelect = this.handleSelect.bind(this);
-  }
-
-  handleSelect(eventId) {
-    this.setState(() => ({
-      selected: eventId,
-    }));
-  }
-
   render() {
     return (
       <React.Fragment>
         {typeof (this.props.data) !== 'undefined' && this.props.data.contents.data.map((item, index) => (
           <CardWrapper key={item.id}>
-            <Card
-              onClick={() => this.handleSelect(item.id)}
-              url={item.images.artwork}
-              dimensions={this.props.dimensions}
-              last={index === this.props.data.contents.data.length - 1}
+            <Link
+              href="/"
+              to={`/movie/${item.id}`}
             >
-              <Overlay />
-            </Card>
+              <Card
+                url={item.images.artwork}
+                dimensions={this.props.dimensions}
+                last={index === this.props.data.contents.data.length - 1}
+              >
+                <Overlay />
+              </Card>
+            </Link>
             {typeof (item.highlighted_score) !== 'undefined' &&
               <View
                 direction="row"
