@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import Loader from '../components/Loader';
 import View from '../components/View';
 
+import Actions from './containers/Actions';
 import Actors from './components/Actors';
 import Languages from './components/Languages';
 import MovieStats from './components/MovieStats';
@@ -37,14 +38,14 @@ const LoaderContainer = glamorous.div({
 });
 
 const Card = glamorous(View)({
-  width: '75%',
   padding: 20,
   border: '1px solid #d9d9d9',
   borderTop: 'none',
   '@media(min-width: 1140px)': {
-    width: '70%',
+    width: '75%',
   },
-  '@media(max-width: 910px)': {
+  '@media(max-width: 1140px)': {
+    order: 2,
     width: '100%',
   },
 });
@@ -82,6 +83,10 @@ const Overlay = glamorous(View)({
 
 const Main = glamorous(View)({
   padding: '0px 20px 20px 20px',
+  flexDirection: 'row',
+  '@media(max-width: 1140px)': {
+    flexDirection: 'column',
+  },
 });
 
 class MoviePage extends React.Component {
@@ -127,6 +132,10 @@ class MoviePage extends React.Component {
                 <Actors actors={data.actors} />
                 <Languages streams={data.view_options.private.streams} />
               </Card>
+              <Actions
+                movieId={data.id}
+                movieName={data.title}
+              />
             </Main>
           </View>
         }
