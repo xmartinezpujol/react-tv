@@ -60,6 +60,7 @@ const dimensions = {
 const RecommendationsContainer = glamorous(View)({
   position: 'relative',
   paddingLeft: 20,
+  backgroundColor: '#101010',
 });
 
 const Hero = glamorous(View)(
@@ -139,7 +140,7 @@ class MoviePage extends React.Component {
             </Main>
           </View>
         }
-        <RecommendationsContainer direction="column" type="night">
+        <RecommendationsContainer direction="column">
           <Text type="h2.w" >
             Otras películas que te pueden gustar
           </Text>
