@@ -33,24 +33,60 @@ const Text = (props) => {
       },
     },
     h2: {
-      fontSize: 25,
+      fontSize: 16,
       color: '#36424A',
       fontWeight: 900,
+      '@media(min-width: 768px)': {
+        fontSize: 18,
+      },
+      '@media(min-width: 992px)': {
+        fontSize: 22,
+      },
+      '@media(min-width: 1200px)': {
+        fontSize: 25,
+      },
     },
     'h2.1': {
-      fontSize: 25,
+      fontSize: 16,
       color: '#36424A',
       fontWeight: 700,
+      '@media(min-width: 768px)': {
+        fontSize: 18,
+      },
+      '@media(min-width: 992px)': {
+        fontSize: 22,
+      },
+      '@media(min-width: 1200px)': {
+        fontSize: 25,
+      },
     },
     'h2.2': {
-      fontSize: 25,
+      fontSize: 16,
       color: '#6E7A83',
       fontWeight: 700,
+      '@media(min-width: 768px)': {
+        fontSize: 18,
+      },
+      '@media(min-width: 992px)': {
+        fontSize: 22,
+      },
+      '@media(min-width: 1200px)': {
+        fontSize: 25,
+      },
     },
     'h2.w': {
-      fontSize: 25,
+      fontSize: 16,
       color: '#FFFFFF',
       fontWeight: 900,
+      '@media(min-width: 768px)': {
+        fontSize: 18,
+      },
+      '@media(min-width: 992px)': {
+        fontSize: 22,
+      },
+      '@media(min-width: 1200px)': {
+        fontSize: 25,
+      },
     },
     h3: {
       fontSize: 14,

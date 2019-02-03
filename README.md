@@ -3,7 +3,7 @@ React App to watch movies &amp; tv shows
 
 ![React Tv](react-tv.png?raw=true "React-Tv")
 
-### Client localhost (http://localhost:3001)
+### Client localhost (http://localhost:5000)
 Node/NPM required to install dependencies.
 
 Clone rep

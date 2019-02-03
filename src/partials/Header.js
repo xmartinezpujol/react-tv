@@ -16,7 +16,7 @@ const HeaderContainer = glamorous(View)({
   borderBottom: '1px solid rgba(255,255,255,.2)',
   padding: '10px 70px 10px 70px',
   '@media(max-width: 910px)': {
-    padding: '10px 0px 10px 30px',
+    padding: 0,
   },
 });
 
@@ -36,20 +36,32 @@ class Header extends React.Component {
         align="center"
       >
         {movie.isFetching &&
-          <Logo color="white" scale={0.7} />
+          <View>
+            <Logo
+              color="white"
+              scale={window.innerWidth > 992 ? 0.7 : 0.5}
+            />
+          </View>
         }
         {!movie.isFetching &&
           <Text
             type="h2.w"
             style={{
+              width: '60%',
               marginRight: 50,
+              marginLeft: 25,
               animation: `${fadeIn} 1s ease forwards`,
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
             }}
           >
             {movie.data.title}
           </Text>
         }
-        <MainMenu />
+        {!movie.isFetching &&
+          <MainMenu />
+        }
       </HeaderContainer>
     );
   }

@@ -18,8 +18,8 @@ const Categories = [
 ];
 
 const dimensions = {
-  xs: { w: 200, h: 290 },
-  sm: { w: 200, h: 290 },
+  xs: { w: 140, h: 190 },
+  sm: { w: 140, h: 190 },
   md: { w: 200, h: 290 },
   lg: { w: 200, h: 290 },
 };
@@ -31,7 +31,7 @@ const HomeContainer = glamorous(View)({
 const HomePage = () => (
   <HomeContainer direction="column">
     <CarouselHero
-      height={444}
+      height={window.innerWidth > 992 ? 444 : 150}
       slides={HeroSlides}
       imgWidth={1920}
     />
