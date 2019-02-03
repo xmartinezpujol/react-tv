@@ -98,3 +98,5 @@ ReactJS, Router, Glamorous, Storybook, Webpack4, Cypress.
 
 
 * especial-x-men list doesn't exist. I saw the 404 from API, but left it on the requested lists so you can see that deprecated lists have no impact on the normal behaviour of the app. If a list fails, everything just works fine.
+
+* I had no endpoint for the Home Hero Carousel, so I ended up mocking it with images from The Movie Database.
