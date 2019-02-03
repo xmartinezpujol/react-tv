@@ -61,7 +61,7 @@ const ModalContainer = glamorous.div(
     color: '#000',
     borderRadius: 6,
     '@media(max-width: 767px)': {
-      maxHeight: '90vh',
+      maxHeight: '100%',
       overflowY: 'auto',
       overflowX: 'hidden',
     },
@@ -69,6 +69,8 @@ const ModalContainer = glamorous.div(
   props => ({
     padding: props.padding,
     backgroundColor: props.color,
+    alignItems: props.align,
+    justifyContent: props.justify,
     ...fullWindowModal(props),
   }),
 );
@@ -117,6 +119,8 @@ class Modal extends React.Component {
             onClick={e => this.clickedContainer(e)}
             color={this.props.color}
             windowed={this.props.windowed}
+            align={this.props.align}
+            justify={this.props.justify}
           >
             {this.props.children}
           </ModalContainer>

@@ -41,7 +41,10 @@ const View = glamorous.div(props => (
 View.propTypes = {
   type: PropTypes.string,
   round: PropTypes.bool,
-  width: PropTypes.number,
+  width: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
   height: PropTypes.number,
   justify: PropTypes.string,
   align: PropTypes.string,

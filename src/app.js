@@ -48,6 +48,7 @@ class App extends React.Component {
           </Switch>
           <Footer />
         </BodyContainer>
+        <div id="modal" />
       </Body>
     );
   }

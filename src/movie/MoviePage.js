@@ -4,21 +4,23 @@ import glamorous from 'glamorous';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import Carousel from '../components/Carousel';
+import List from '../components/List';
 import Loader from '../components/Loader';
+import Text from '../components/Text';
 import View from '../components/View';
 
 import Actions from './containers/Actions';
+import Trailer from './containers/Trailer';
+
 import Actors from './components/Actors';
 import Languages from './components/Languages';
 import MovieStats from './components/MovieStats';
 import Sinopsis from './components/Sinopsis';
 
-import Text from '../components/Text';
-import Carousel from '../components/Carousel';
-import List from '../components/List';
-
 import * as movieActions from './../redux/modules/movie';
 import * as recommendationsActions from './../redux/modules/recommendations';
+import * as trailerActions from './../redux/modules/streaming';
 
 const MovieContainer = glamorous(View)({
   backgroundColor: '#F1F1F1',
@@ -65,6 +67,7 @@ const RecommendationsContainer = glamorous(View)({
 
 const Hero = glamorous(View)(
   {
+    backgroundPosition: '50% 50%',
     backgroundSize: 'cover',
     height: 655,
     width: '100%',
@@ -98,14 +101,17 @@ class MoviePage extends React.Component {
 
   componentWillReceiveProps(newProps) {
     if (newProps.location.pathname !== this.props.location.pathname) {
+      this.props.dispatch(movieActions.resetMovie());
       this.props.dispatch(movieActions.fetchMovie(newProps.match.params.id));
       this.props.dispatch(recommendationsActions.fetchRecommendations(newProps.match.params.id));
+      this.props.dispatch(trailerActions.resetStreaming());
     }
   }
 
   componentWillUnmount() {
     this.props.dispatch(movieActions.resetMovie());
     this.props.dispatch(recommendationsActions.resetRecommendations());
+    this.props.dispatch(trailerActions.resetStreaming());
   }
 
   render() {
@@ -120,7 +126,9 @@ class MoviePage extends React.Component {
         {!isFetching &&
           <View direction="column">
             <View direction="column" style={{ position: 'relative' }}>
-              <Overlay />
+              <Overlay align="center" justify="center">
+                <Trailer />
+              </Overlay>
               <Hero imageUrl={data.images.snapshot} />
             </View>
             <Main>

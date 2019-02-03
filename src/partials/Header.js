@@ -12,7 +12,7 @@ import MainMenu from './MainMenu';
 
 const HeaderContainer = glamorous(View)({
   position: 'fixed',
-  zIndex: 999,
+  zIndex: 200,
   borderBottom: '1px solid rgba(255,255,255,.2)',
   padding: '10px 70px 10px 70px',
   '@media(max-width: 910px)': {
