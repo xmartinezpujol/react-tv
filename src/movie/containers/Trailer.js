@@ -1,6 +1,7 @@
 import React from 'react';
 import glamorous from 'glamorous';
 
+import noScroll from 'no-scroll';
 import { connect } from 'react-redux';
 
 import Button from '../../components/Button';
@@ -62,12 +63,14 @@ class Trailer extends React.Component {
   }
 
   openModal() {
+    noScroll.on();
     this.setState(() => ({
       trailerModal: 'opened',
     }));
   }
 
   closeModal() {
+    noScroll.off();
     this.setState(() => ({
       trailerModal: 'closed',
     }));
@@ -125,12 +128,18 @@ class Trailer extends React.Component {
                   <Loader color="yellow" />
                 </LoaderContainer>
               }
-              {!streaming.isFetching &&
+              {!streaming.isFetching && typeof (streaming.data) !== 'undefined' &&
                 <View width="100%" align="center" justify="center" >
                   <video width="100%" height="auto" controls autoPlay>
                     <source src={`${streaming.data.stream_infos[0].url}`} type="video/mp4" />
                   </video>
                 </View>
+              }
+              {!streaming.isFetching && typeof (streaming.data) === 'undefined' &&
+              <View direction="column" width="100%" align="center" justify="center" >
+                <Text type="h1">:(</Text>
+                <Text type="h1">Tráiler no disponible</Text>
+              </View>
               }
             </View>
           </Modal>
