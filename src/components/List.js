@@ -76,6 +76,7 @@ const List = props => (
     {props.data.map((item, index) => (
       <CardWrapper key={item.id}>
         <Link
+          className={`movie-link card-${item.id}`}
           href="/"
           to={`/movie/${item.id}`}
         >

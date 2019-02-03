@@ -38,6 +38,12 @@ npm run build
 
 ### Testing
 
+* Unit & Snapshot tests done in Jest. 
+
+``` shell
+npm run test
+```
+
 * Integration/E2E tests done in Cypress. 
 
 ``` shell
@@ -56,19 +62,29 @@ npm run teste2e
 8) Animations & State Control.
 9) Add E2E tests in Cypress + Refactoring.
 
-### Notes
+### Considerations
 
 * ESLint + AirnBnB Styleguide is used for code linting.
 
 * Storybook is used for component development, following the Component Driven Design (CDD) mindset. Snapshots and UI testing could be added there also. This is a common ground with designers also to improve the companies visual Styleguide and use it as a UI Explorer.
 
-* Cypress has automated tests for both components, start the client first (the localhost:3001), then Cypress. I've tested rendering and state. That could be done also in Jest/Enzyme, but I had some problems running snapshots with Victory lib, so ended up doing everything in Cypress. I followed some Cypress best practices attaching data-cy to test elements.
+* Cypress has automated tests for both components, start the client first (the localhost:5000), then Cypress. I've tested rendering and state. In Cypress I only tested the user journey of opening a Trailer from Home to Movie detail to show how the framework works. Add more cases to improve testing confidence. For CI/CD, Jest & Cypress could be added in a Jenkins pipeline.
 
 ## Refactoring / Improvements
 
 * Texts should be FormattedMessages from react-intl (or similar intl libs) to support multilingual functionality.
 
 * Dev environment could be done in Docker containers.
+
+* Improve test code coverage. At least all presentational components.
+
+* Move all presentational components and some containers (if used regularly) to an external lib (npm is an option). That way we can import and reuse component in different projects.
+
+* Bundle size is currently not a problem. For a bigger project, use chunks in Webpack or libs like React Loadable.
+
+* I recommmend virtualized lists in case we have to load more carousels (suggestion: react-virtualized)
+
+* Image loading could be improved. Some useful techniques here: https://images.guide/
 
 ### Tech Stack
 ReactJS, Router, Glamorous, Storybook, Webpack4, Cypress.

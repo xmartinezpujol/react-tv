@@ -86,6 +86,7 @@ class Trailer extends React.Component {
     return (
       <View direction="column" align="center" justify="center" style={{ position: 'absolute' }}>
         <ButtonAdapter
+          className="play-trailer"
           onClick={this.playTrailer}
           type="purewhite"
           iFont="fa"
@@ -107,6 +108,7 @@ class Trailer extends React.Component {
           >
             <View width="100%" align="center" justify="center" >
               <Button
+                className="close-trailer"
                 onClick={this.closeModal}
                 template="link"
                 type="transparent"
